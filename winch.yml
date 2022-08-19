@@ -1,2 +1,10 @@
 name: test-project
 description: test-project
+repository: https://github.com/winchci/test-project
+build:
+  command: echo 'building'
+test:
+  enabled: false
+release:
+  branches:
+    only: main
