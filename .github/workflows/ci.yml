@@ -27,6 +27,5 @@ jobs:
     - uses: actions/setup-go@v3
       with:
         go-version: '^1.18'
-    - uses: winchci/actions-setup-winch@v1
-    - run: go version
+    - uses: winchci/setup-winch@v1
     - run: 'winch ci'
