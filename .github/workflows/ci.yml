@@ -28,14 +28,18 @@ jobs:
 
   sample1:
     uses: ./.github/workflows/sample1.yml
-    secrets: inherit
+    needs: [build]
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   sample2:
     uses: ./.github/workflows/sample2.yml
-    secrets: inherit
+    needs: [build]
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
   DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
   SNYK_AUTH_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
