@@ -1,0 +1,13 @@
+name: Sample 2
+
+on:
+  workflow_call:
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+
+jobs:
+  something:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello from sample 2"
