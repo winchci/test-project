@@ -37,6 +37,7 @@ jobs:
     needs: [build]
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
 
   sample2:
     if: github.ref == 'refs/heads/main'
