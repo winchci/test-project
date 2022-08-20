@@ -5,7 +5,7 @@ build:
   command: echo 'building'
 test:
   enabled: false
-before_release:
+after_build:
   command: |
     mkdir artifacts
     echo "hello" >artifacts/hello.txt
