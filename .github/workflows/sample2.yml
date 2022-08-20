@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "hello from sample 2"
-      - run: ls -la /
+      - run: ls -la .
 
 env:
   GITHUB_TOKEN: ${{ secrets.GH_TOKEN}}
