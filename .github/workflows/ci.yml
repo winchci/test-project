@@ -24,6 +24,11 @@ jobs:
       with:
         name: my-artifact
         path: artifacts/
+    - uses: google-github-actions/release-please-action@v3
+      with:
+        release-type: go
+        command: github-release
+        package-name: test-project
 
   sample1:
     if: github.ref == 'refs/heads/main'
