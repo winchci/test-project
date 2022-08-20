@@ -24,6 +24,6 @@ jobs:
         go-version: '^1.18'
     - uses: winchci/setup-winch@v1
     - run: 'winch ci'
-    - uses: arwynfr/actions-conventional-versioning@1.0.0
+    - uses: arwynfr/actions-conventional-versioning@0.1.0
       with:
         pattern: artifacts/*
