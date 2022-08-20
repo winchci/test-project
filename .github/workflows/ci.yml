@@ -27,11 +27,11 @@ jobs:
     - run: "echo steps.version.version"
 
   sample1:
-    uses: ./github/workflows/sample1.yml
+    uses: ./github/workflows/sample1.yml@main
     secrets: inherit
 
   sample2:
-    uses: ./github/workflows/sample2.yml
+    uses: ./github/workflows/sample2.yml@main
     secrets: inherit
 
 env:
