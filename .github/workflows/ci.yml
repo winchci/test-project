@@ -25,12 +25,14 @@ jobs:
         path: artifacts/
 
   sample1:
+    if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/sample1.yml
     needs: [build]
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   sample2:
+    if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/sample2.yml
     needs: [build]
     secrets:
