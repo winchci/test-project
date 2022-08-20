@@ -29,6 +29,7 @@ jobs:
       with:
         files: artifacts/*
         generate_release_notes: true
+        tag_name: v1.3.4
 
   sample1:
     if: github.ref == 'refs/heads/main'
