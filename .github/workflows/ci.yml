@@ -24,7 +24,7 @@ jobs:
         minor-identifier: /^feat/
     - uses: winchci/setup-winch@v1
     - run: 'winch ci'
-    - run: "echo steps.version.version"
+    - run: "echo ${{steps.version.version}}"
 
   sample1:
     uses: ./.github/workflows/sample1.yml
