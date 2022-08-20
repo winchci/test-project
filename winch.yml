@@ -5,6 +5,7 @@ build:
   command: echo 'building'
 test:
   enabled: false
-release:
-  branches:
-    only: main
+before_release:
+  command: |
+    mkdir artifacts
+    echo "hello" >artifacts/hello.txt
