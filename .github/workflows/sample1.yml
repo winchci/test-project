@@ -57,9 +57,6 @@ jobs:
         continue-on-error: true
         uses: snyk/actions/docker@master
         env:
-          # In order to use the Snyk Action you will need to have a Snyk API token.
-          # More details in https://github.com/snyk/actions#getting-your-snyk-token
-          # or you can signup for free at https://snyk.io/login
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: winchci/test-project
@@ -78,12 +75,22 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha
           push: ${{ github.event_name != 'pull_request' }}
+          load: ${{ github.event_name == 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           github-token: ${{ secrets.GH_TOKEN }}
 #          build-args: |
 #            foo
 #          target: container
+      - name: Build and push docker image
+        uses: conventional-actions/docker-scan@v1
+        with:
+          image: winchci/test-project
+          tag: latest
+          severity: medium
+          token: ${{ secrets.GH_TOKEN }}
+          file: docker/sample1/Dockerfile
+          exclude-base: false
 
 env:
   GITHUB_TOKEN: ${{ secrets.GH_TOKEN}}
