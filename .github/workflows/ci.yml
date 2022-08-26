@@ -23,7 +23,7 @@ jobs:
       - uses: conventional-actions/winch@v1
       - uses: conventional-actions/go-kart@v0.0.10
       - uses: conventional-actions/go-vet@v0.0.1
-      - uses: conventional-actions/go-revive@v0.0.4
+      - uses: conventional-actions/go-revive@v0.0.5
       - uses: conventional-actions/go-staticcheck@v1.0.1
       - run: |
           ls -l *.sarif
