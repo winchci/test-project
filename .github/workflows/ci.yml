@@ -22,6 +22,38 @@ jobs:
           go-version: '^1.18'
       - uses: conventional-actions/winch@v1
 
+  setup-docker-scan:
+    name: Setup Docker Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: conventional-actions/setup-netrc@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
+      - uses: conventional-actions/setup-docker-scan@v1.1.0
+        with:
+          token: ${{secrets.SNYK_AUTH_TOKEN}}
+
+  docker-scan:
+    name: Setup Docker Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: conventional-actions/setup-netrc@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
+      - uses: conventional-actions/docker-scan@v1.1.0
+        with:
+          token: ${{secrets.SNYK_AUTH_TOKEN}}
+          image: winchci/golang
+          tag: latest
+
   vet:
     name: Vet
     runs-on: ubuntu-latest
