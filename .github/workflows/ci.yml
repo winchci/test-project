@@ -21,17 +21,65 @@ jobs:
         with:
           go-version: '^1.18'
       - uses: conventional-actions/winch@v1
-      - uses: conventional-actions/go-vet@v1.0.0
+
+  vet:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: conventional-actions/setup-netrc@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
+      - uses: conventional-actions/go-vet@v1.0.1
+
+  kart:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: conventional-actions/setup-netrc@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
       - id: gokart
         uses: conventional-actions/go-kart@v1
       - uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: ${{steps.gokart.outputs.output_path}}
+
+  revive:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: conventional-actions/setup-netrc@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
       - id: gorevive
         uses: conventional-actions/go-revive@v0.0.5
       - uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: ${{steps.gorevive.outputs.output_path}}
+
+  staticcheck:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: conventional-actions/setup-netrc@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
       - id: staticcheck
         uses: conventional-actions/go-staticcheck@v1.1.1
       - uses: github/codeql-action/upload-sarif@v2
