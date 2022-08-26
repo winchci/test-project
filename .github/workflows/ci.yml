@@ -26,7 +26,6 @@ jobs:
     name: Vet
     runs-on: ubuntu-latest
     steps:
-      - uses: conventional-actions/setup-netrc@v1
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -39,7 +38,6 @@ jobs:
     name: Kart
     runs-on: ubuntu-latest
     steps:
-      - uses: conventional-actions/setup-netrc@v1
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -56,7 +54,6 @@ jobs:
     name: Revive
     runs-on: ubuntu-latest
     steps:
-      - uses: conventional-actions/setup-netrc@v1
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -73,7 +70,6 @@ jobs:
     name: Staticcheck
     runs-on: ubuntu-latest
     steps:
-      - uses: conventional-actions/setup-netrc@v1
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -85,6 +81,22 @@ jobs:
       - uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: ${{steps.staticcheck.outputs.output_path}}
+
+  gosec:
+    name: Gosec
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
+      - id: gosec
+        uses: conventional-actions/go-sec@v0.0.1
+      - uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{steps.gosec.outputs.output_path}}
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
