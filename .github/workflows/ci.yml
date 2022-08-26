@@ -13,51 +13,14 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3.0.2
-    - uses: actions/setup-go@v3
-      with:
-        go-version: '^1.18'
-    - uses: winchci/setup-winch@v1
-    - run: 'winch ci'
-    - uses: actions/upload-artifact@v3
-      if: github.ref == 'refs/heads/main'
-      with:
-        name: my-artifact
-        path: |
-          artifacts/
-          docker/
-    - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/golang@master
-      continue-on-error: true # To make sure that SARIF upload gets called
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
-      with:
-        args: --sarif-file-output=snyk.sarif
-    - name: Upload result to GitHub Code Scanning
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: snyk.sarif
-    - uses: softprops/action-gh-release@v1
-#      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        files: artifacts/*
-        generate_release_notes: true
-        tag_name: v1.3.5
-
-  sample1:
-    if: github.ref == 'refs/heads/main'
-    uses: ./.github/workflows/sample1.yml
-    needs: [build]
-    secrets:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      SNYK_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}
-
-  sample2:
-    if: github.ref == 'refs/heads/main'
-    uses: ./.github/workflows/sample2.yml
-    needs: [build]
-    secrets:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: conventional-actions/setup-netrc@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
+      - uses: conventional-actions/winch@v1
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
