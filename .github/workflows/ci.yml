@@ -25,6 +25,8 @@ jobs:
       - uses: conventional-actions/go-vet@v0.0.1
       - uses: conventional-actions/go-revive@v0.0.4
       - uses: conventional-actions/go-staticcheck@v1.0.1
+      - run: |
+          ls -l *.sarif
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
