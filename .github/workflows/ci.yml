@@ -48,7 +48,7 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version: '^1.18'
-      - uses: conventional-actions/docker-scan@v1.1.0
+      - uses: conventional-actions/docker-scan@v1.1.1
         with:
           token: ${{secrets.SNYK_AUTH_TOKEN}}
           image: winchci/golang
