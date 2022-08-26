@@ -22,7 +22,7 @@ jobs:
           go-version: '^1.18'
       - uses: conventional-actions/winch@v1
       - uses: conventional-actions/go-kart@v0.0.10
-      - uses: conventional-actions/go-staticcheck@v0.1.0
+      - uses: conventional-actions/go-staticcheck@v1.0.0
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
