@@ -1,6 +1,7 @@
 package test_project
 
-func init() {
-  fmt.Printf("%s")
-}
+import "fmt"
 
+func init() {
+	fmt.Printf("%s")
+}

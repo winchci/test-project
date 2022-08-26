@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Winch
     runs-on: ubuntu-latest
     steps:
       - uses: conventional-actions/setup-netrc@v1
@@ -23,7 +23,7 @@ jobs:
       - uses: conventional-actions/winch@v1
 
   vet:
-    name: Build
+    name: Vet
     runs-on: ubuntu-latest
     steps:
       - uses: conventional-actions/setup-netrc@v1
@@ -36,7 +36,7 @@ jobs:
       - uses: conventional-actions/go-vet@v1.0.2
 
   kart:
-    name: Build
+    name: Kart
     runs-on: ubuntu-latest
     steps:
       - uses: conventional-actions/setup-netrc@v1
@@ -53,7 +53,7 @@ jobs:
           sarif_file: ${{steps.gokart.outputs.output_path}}
 
   revive:
-    name: Build
+    name: Revive
     runs-on: ubuntu-latest
     steps:
       - uses: conventional-actions/setup-netrc@v1
@@ -70,7 +70,7 @@ jobs:
           sarif_file: ${{steps.gorevive.outputs.output_path}}
 
   staticcheck:
-    name: Build
+    name: Staticcheck
     runs-on: ubuntu-latest
     steps:
       - uses: conventional-actions/setup-netrc@v1
