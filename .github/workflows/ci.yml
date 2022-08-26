@@ -34,7 +34,11 @@ jobs:
           sarif_file: ${{steps.gorevive.outputs.output_path}}
       - run: |
           ls -l *.sarif
-      - uses: conventional-actions/go-staticcheck@v1.0.1
+      - id: staticcheck
+        uses: conventional-actions/go-staticcheck@v1.1.0
+      - uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{steps.staticcheck.outputs.output_path}}
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
