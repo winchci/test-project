@@ -163,6 +163,9 @@ jobs:
         with:
           sarif_file: ${{steps.gosec.outputs.output_path}}
 
+permissions:
+  contents: write
+
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
