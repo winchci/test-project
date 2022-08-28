@@ -24,7 +24,7 @@ jobs:
         with:
           go-version: '^1.18'
       - name: Go Version
-        uses: actions/go-version@v1
+        uses: conventional-actions/go-version@v1
       - name: Go Build
         uses: conventional-actions/go-build@v1
         with:
