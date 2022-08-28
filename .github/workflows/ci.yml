@@ -9,7 +9,37 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  go-build-release:
+    name: Go Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: conventional-actions/setup-netrc@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - id: version
+        name: Determine next version
+        uses: conventional-actions/next-version@v1
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
+      - name: Go Version
+        uses: actions/go-version@v1
+      - name: Go Build
+        uses: conventional-actions/go-build@v1
+        with:
+          platforms: |
+            linux/amd64
+            linux/arm64
+            darwin/amd64
+            darwin/arm64
+            windows/amd64
+      - name: Create release
+        uses: conventional-actions/create-release@v1
+        with:
+          tag_name: ${{steps.version.outputs.version}}
+
+  winch:
     name: Winch
     runs-on: ubuntu-latest
     steps:
