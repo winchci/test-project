@@ -25,6 +25,8 @@ jobs:
           go-version: '^1.18'
       - name: Go Version
         uses: conventional-actions/go-version@v1
+        with:
+          version: ${{steps.version.outputs.version}}
       - name: Go Build
         uses: conventional-actions/go-build@v1
         with:
