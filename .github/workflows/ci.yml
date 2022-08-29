@@ -57,7 +57,7 @@ jobs:
         uses: conventional-actions/go-build-test@v1
       - name: Run Test
         run:
-          ./.test/linux-amd64/smoke.test
+          ./.test/linux-amd64/smoketest.test
 
   winch:
     name: Winch
