@@ -1,0 +1,28 @@
+name: Docker Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  docker-scan:
+    name: Docker Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: conventional-actions/setup-netrc@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
+      - uses: conventional-actions/docker-scan@v1.1.3
+        with:
+          token: ${{secrets.SNYK_AUTH_TOKEN}}
+          image: winchci/golang
+          tag: latest
+
+env:
+  SNYK_AUTH_TOKEN: ${{ secrets.SNYK_AUTH_TOKEN }}

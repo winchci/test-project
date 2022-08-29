@@ -1,0 +1,24 @@
+name: Go Staticcheck
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  staticcheck:
+    name: Staticcheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
+      - id: staticcheck
+        uses: conventional-actions/go-staticcheck@v1.1.1
+      - uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{steps.staticcheck.outputs.output_path}}

@@ -1,0 +1,22 @@
+name: Go Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  go-build-test:
+    name: Go Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: conventional-actions/setup-netrc@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.18'
+      - name: Go Build Test
+        uses: conventional-actions/go-test@v1
